@@ -1,1 +1,36 @@
-everything
+Framework of Template processor is complete - more functionality can be added as it is desired
+
+Next Step is to flesh out the Utils/Configurator
+
+The Configurator should be responsible for:
+
+
+
+Flow is:
+
+Parse Args
+   get template type and name
+      check if template exists
+   if exists: process template file
+      if not exists: handle error
+
+   for file in preprocessor:
+      check if already exists
+      if not exists:
+         no problem, make it
+      if exists:
+         if not specified by command line then:
+            ask to overwrite || rename || skip
+      if to be edited: edit
+      if to be executed: execute then delete
+      if nothing, do nothing
+
+
+Utils needed based on this:
+   fileExists()
+   getFileType()
+   makeFile()
+   editFile()
+   executeFile()
+   deleteFile()
+

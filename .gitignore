@@ -1,0 +1,4 @@
+TEST.txt
+*.pyc
+*.pyo
+*.swp

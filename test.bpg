@@ -1,0 +1,22 @@
+== begin block ==
+author = Gordon Bailey
+description = test file
+== end block ==
+== begin file main ==
+#!/usr/bin/python
+# =$author== on =$strftime(%a, %d %b %Y %T %z)==
+
+print "this is a =$description== made by =$author=="
+== end file ==
+== begin file Makefile2 ==
+.PHONY all
+
+all:
+	echo dostuff
+
+== end file ==
+== begin instructions ==
+#!/bin/bash
+echo chmod a+x =$file==
+chmod a+x =$file==
+== end instructions ==
