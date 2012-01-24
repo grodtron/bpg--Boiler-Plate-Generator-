@@ -1,12 +1,18 @@
-.PHONY: install clean dir
+.PHONY: install uninstall clean dir
 
 install: dir
-	sudo cp bpg.py /usr/bin/bpg
+	./package.py bpg.py > tmp.py
+	sudo mv tmp.py /usr/bin/bpg
 	sudo chmod a+x /usr/bin/bpg
 
 clean:
-	sudo rm /usr/bin/bpg
-	rm -rf ~/.bpg
+	-rm tmp.py
+	-rm *.pyc
+	-rm *.pyo
 
-dir: clean
+uninstall:
+	-sudo rm /usr/bin/bpg
+	-rm -rf ~/.bpg
+
+dir: uninstall
 	cp -r .bpg ~/.bpg
