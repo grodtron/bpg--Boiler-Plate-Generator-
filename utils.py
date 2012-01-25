@@ -48,6 +48,9 @@ class Utils:
             return True
       return False
 
+   def getFullTemplatePath(self, name, ftype):
+      return os.environ["HOME"] + "/.bpg/templates/%s/%s" % (ftype, name)
+
    def _getEditor(self):
       editor = ""
       if os.environ.has_key("EDITOR"):

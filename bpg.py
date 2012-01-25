@@ -19,20 +19,29 @@ def main():
    utils = Utils()
    #try:
 
-   if utils.isKnownFileType(utils.getFileType(args.filename)):
-      print "%s is known filetype" % utils.getFileType(args.filename)
+   filename     = args.filename
+   filetype     = utils.getFileType(filename)
+   template     = args.template
+   templateFile = utils.getFullTemplatePath(template, filetype)
+
+   # Do input checking (make sure that the template file exists)
+
+   if utils.isKnownFileType(filetype):
+      print "%s is known filetype" % filetype
    else:
-      print "%s is not known filetype" % utils.getFileType(args.filename)
+      print "%s is not known filetype" % filetype
       sys.exit(1)
 
-   if not utils.fileExists(args.template):
-      print "Template file \"%s\" could not be found" % args.template
+   if not utils.fileExists(templateFile):
+      print "Template file \"%s\" could not be found" % template
       sys.exit(1)
 
+   # process the template file
    preprocessor = TemplateReader()
-   preprocessor.loadVariables({"file" : args.filename})
-   preprocessor.parseTemplate(args.template)
+   preprocessor.loadVariables({"file" : filename})
+   preprocessor.parseTemplate(templateFile)
 
+   # create the desired files
    for f in preprocessor:
       if f.type == OutputFile.NORMAL:
          if f.name == "main":
